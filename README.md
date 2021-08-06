@@ -10,6 +10,7 @@
 
 - Lang files v10.1.3 [Laravel-Lang](https://github.com/Laravel-Lang/lang)
 - Localization for Laravel [mcamara](https://github.com/mcamara/laravel-localization)
+- handle roles, permissions, and teams authorization [Laratrust](https://laratrust.santigarcor.me/)
 
 ### package.json:
 
