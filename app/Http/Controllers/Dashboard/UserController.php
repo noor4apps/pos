@@ -17,6 +17,23 @@ class UserController extends Controller
     public function create()
     {
         return view('dashboard.users.create');
-    }// end oo create
+    }// end of create
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|max:20',
+            'last_name' => 'required|max:20',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:8',
+        ]);
+
+        $data = $request->except('password');
+        $data['password'] = bcrypt($request->password);
+
+        $user = User::create($data);
+
+        return redirect()->route('dashboard.users.index')->with('success', __('site.added_successfully'));
+    }// end of store
 
 }// end of controller

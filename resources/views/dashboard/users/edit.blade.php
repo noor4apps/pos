@@ -10,7 +10,7 @@
                 <small>Control panel</small>
             </h1>
             <ol class="breadcrumb">
-                <li class="active"><i class="fa fa-dashboard"></i> {{ __('site.dashboard') }} </li>
+                <li class="active"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</li>
             </ol>
         </section>
 

@@ -10,9 +10,9 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>{{ __('site.dashboard') }}</h1>
+            <h1>@lang('site.dashboard')</h1>
             <ol class="breadcrumb">
-                <li class="active"><i class="fa fa-dashboard"></i> {{ __('site.dashboard') }} </li>
+                <li class="active"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</li>
             </ol>
         </section>
 

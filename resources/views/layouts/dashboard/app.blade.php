@@ -42,6 +42,8 @@
 
     {{--noty--}}
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/noty/noty.css') }}">
+    <script src="{{ asset('dashboard/plugins/noty/noty.min.js') }}"></script>
+
     {{--<!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/icheck/all.css') }}">
 
@@ -77,9 +79,6 @@
 <script src="{{ asset('dashboard/js/jquery.min.js') }}"></script>
 {{--<!-- Bootstrap 3.3.7 -->--}}
 <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
-
-{{-- noty --}}
-<script src="{{ asset('dashboard/plugins/noty/noty.min.js') }}"></script>
 
 {{--icheck--}}
 <script src="{{ asset('dashboard/plugins/icheck/icheck.min.js') }}"></script>
