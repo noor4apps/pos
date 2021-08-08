@@ -42,6 +42,49 @@
                             <input type="password" name="password" id="password" class="form-control">
                             @error('password')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
+
+                        @php
+                            $models = ['categories', 'products', 'clients', 'orders', 'users']
+                        @endphp
+
+                        <div class="form-group">
+                            <label>@lang('site.permissions')</label>
+                            <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs">
+                                    @foreach($models as $model)
+                                        <li class="{{ $loop->index == 0 ? 'active' : '' }}"><a href="#{{ $model }}" data-toggle="tab">@lang('site.' . $model)</a></li>
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach($models as $model)
+                                        <div class="tab-pane {{ $loop->index == 0 ? 'active' : '' }}" id="{{ $model }}">
+
+                                            <label style="font-weight: 400; padding: 15px;">
+                                                <input type="checkbox" name="permissions[]" value="read_{{ $model }}">
+                                                @lang('site.read')
+                                            </label>
+
+                                            <label style="font-weight: 400; padding: 15px;">
+                                                <input type="checkbox" name="permissions[]" value="create_{{ $model }}">
+                                                @lang('site.create')
+                                            </label>
+
+                                            <label style="font-weight: 400; padding: 15px;">
+                                                <input type="checkbox" name="permissions[]" value="update_{{ $model }}">
+                                                @lang('site.update')
+                                            </label>
+
+                                            <label style="font-weight: 400; padding: 15px;">
+                                                <input type="checkbox" name="permissions[]" value="delete_{{ $model }}">
+                                                @lang('site.delete')
+                                            </label>
+
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div><!-- end of tabs permission -->
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> @lang('site.save')</button>
                         </div>

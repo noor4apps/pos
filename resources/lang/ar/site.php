@@ -9,6 +9,11 @@ return [
     'password-confirm' => 'تأكيد كلمة المرور',
     'change_password' => 'تغيير كلمة المرور',
 
+    'permissions' => 'الصلاحيات',
+    'read' => 'عرض',
+    'create' => 'إضافة',
+    'update' => 'تعديل',
+
     'actions' => 'الإجراءات',
     'add' => 'أضف',
     'edit' => 'تعديل',

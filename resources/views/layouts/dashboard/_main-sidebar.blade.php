@@ -31,9 +31,9 @@
 {{--                <li><a href="{{ route('dashboard.orders.index') }}"><i class="fa fa-bookmark"></i><span>@lang('site.orders')</span></a></li>--}}
 {{--            @endif--}}
 
-{{--            @if (auth()->user()->hasPermission('read_users'))--}}
+            @if (auth()->user()->hasPermission('read_users'))
                 <li><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i><span>{{ __('site.users') }}</span></a></li>
-{{--            @endif--}}
+            @endif
 
             {{--<li class="treeview">--}}
             {{--<a href="#">--}}

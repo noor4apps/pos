@@ -28,10 +28,13 @@ class UserController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        $data = $request->except('password');
+        $data = $request->except('password', 'permissions');
         $data['password'] = bcrypt($request->password);
 
         $user = User::create($data);
+
+        $user->attachRole('admin');
+        $user->syncPermissions($request->permissions);
 
         return redirect()->route('dashboard.users.index')->with('success', __('site.added_successfully'));
     }// end of store
