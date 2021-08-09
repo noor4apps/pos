@@ -28,7 +28,7 @@ class UserController extends Controller
                     ->orWhere('email', 'like', '%' . $request->search . '%');
             });
 
-        })->paginate(10);
+        })->latest()->paginate(10);
 
         return view('dashboard.users.index', compact('users'));
     }// end of index
@@ -81,5 +81,12 @@ class UserController extends Controller
 
         return redirect()->route('dashboard.users.index')->with('success', __('site.updated_successfully'));
     }// end of update
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('dashboard.users.index')->with('success', __('site.deleted_successfully'));
+    }
 
 }// end of controller

@@ -9,6 +9,10 @@ return [
     'password-confirm' => 'Password Confirm',
     'change_password' => 'Change Password',
 
+    'confirm_delete' => 'Confirm Delete',
+    'yes' => 'Yes',
+    'no' => 'No',
+
     'permissions' => 'Permissions',
     'read' => 'Read',
     'create' => 'Create',

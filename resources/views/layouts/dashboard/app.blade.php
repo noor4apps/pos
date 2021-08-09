@@ -50,6 +50,12 @@
     {{--select 2--}}
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/select2/select2-bootstrap.css') }}">
+
+    <style>
+        .mr-2{
+            margin-right: 2px;
+        }
+    </style>
     @yield('styles')
 </head>
 
@@ -114,33 +120,27 @@
         $('.select2').select2({
             theme: "bootstrap"
         });
-        {{--
+
         //delete
         $('.delete').click(function (e) {
-
             var that = $(this)
-
             e.preventDefault();
-
             var n = new Noty({
-                text: "@lang('site.confirm_delete')",
+                text: "<strong>@lang('site.confirm_delete')</strong>",
                 type: "warning",
                 killer: true,
                 buttons: [
                     Noty.button("@lang('site.yes')", 'btn btn-success mr-2', function () {
                         that.closest('form').submit();
                     }),
-
                     Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
                         n.close();
                     })
                 ]
             });
-
             n.show();
-
         });//end of delete
---}}
+
     })
 </script>
 @stack('scripts')
