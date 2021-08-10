@@ -71,22 +71,30 @@
                                         <div class="tab-pane {{ $loop->index == 0 ? 'active' : '' }}" id="{{ $model }}">
 
                                             <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]" value="read_{{ $model }}">
+                                                <input type="checkbox" name="permissions[]"
+                                                       {{ is_array(old('permissions')) && in_array('read_' . $model, old('permissions')) ? 'checked' : '' }}
+                                                value="read_{{ $model }}">
                                                 @lang('site.read')
                                             </label>
 
                                             <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]" value="create_{{ $model }}">
+                                                <input type="checkbox" name="permissions[]"
+                                                       {{ is_array(old('permissions')) && in_array('create_' . $model, old('permissions')) ? 'checked' : '' }}
+                                                       value="create_{{ $model }}">
                                                 @lang('site.create')
                                             </label>
 
                                             <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]" value="update_{{ $model }}">
+                                                <input type="checkbox" name="permissions[]"
+                                                       {{ is_array(old('permissions')) &&  in_array('update_' . $model, old('permissions')) ? 'checked' : '' }}
+                                                value="update_{{ $model }}">
                                                 @lang('site.update')
                                             </label>
 
                                             <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]" value="delete_{{ $model }}">
+                                                <input type="checkbox" name="permissions[]"
+                                                       {{ is_array(old('permissions')) &&  in_array('delete_' . $model, old('permissions')) ? 'checked' : '' }}
+                                                value="delete_{{ $model }}">
                                                 @lang('site.delete')
                                             </label>
 
