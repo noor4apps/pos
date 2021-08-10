@@ -14,3 +14,8 @@ $(document).ready(function() {
     })
 
 })
+
+/**
+ * Put the class='image' on the source
+ * Put the id='image-preview' on the target
+ */

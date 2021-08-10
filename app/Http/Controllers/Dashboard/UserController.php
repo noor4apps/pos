@@ -47,8 +47,8 @@ class UserController extends Controller
             'last_name' => 'required|max:20',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
-            'permissions' => 'required',
-            'image' => 'nullable|mimes:jpg,jpeg,png,bmp|max:20480',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp|max:10240',
+            'permissions' => 'required|array|min:1',
         ]);
 
         $data = $request->except(['permissions[]', 'image']);
@@ -81,10 +81,23 @@ class UserController extends Controller
             'first_name' => 'required|max:20',
             'last_name' => 'required|max:20',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'permissions' => 'required',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp|max:10240',
+            'permissions' => 'required|array|min:1',
         ]);
 
-        $data = $request->except(['permissions[]']);
+        $data = $request->except(['permissions[]', 'image']);
+
+        if($request->has('image')) {
+            if ($user->image != 'default.png') {
+                Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+            } // end of if
+
+            $name = $request->image->hashName();
+            Image::make($request->image)->resize('225', null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/user_images/' . $name));
+            $data['image'] = $name;
+        }
 
         $user->update($data);
 

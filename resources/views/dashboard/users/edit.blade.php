@@ -20,7 +20,7 @@
                     <h3 class="box-title">@lang('site.edit')</h3>
                 </div><!-- end of box header -->
                 <div class="box-body">
-                    <form action="{{ route('dashboard.users.update', $user->id) }}" method="post">
+                    <form action="{{ route('dashboard.users.update', $user->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="form-group">
@@ -37,6 +37,15 @@
                             <label for="email">@lang('site.email')</label>
                             <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}">
                             @error('email')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image-user">@lang('site.image')</label>
+                            <input type="file" name="image" id="image-user" class="image form-control">
+                            @error('image')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="form-group">
+                            <img src="{{ $user->image_path }}" id="image-preview" class="img-circle img-responsive" style="width: 75px">
                         </div>
 
                         @php

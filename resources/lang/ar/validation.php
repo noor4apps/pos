@@ -129,6 +129,8 @@ return [
         ],
     ],
     'attributes'           => [
+        'image'                 => 'ًصورة',
+        'permissions'           => 'الصلاحيات',
         'address'               => 'العنوان',
         'age'                   => 'العمر',
         'available'             => 'مُتاح',

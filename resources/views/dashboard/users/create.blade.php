@@ -40,8 +40,11 @@
 
                         <div class="form-group">
                             <label for="image-user">@lang('site.image')</label>
-                            <input type="file" name="image" id="image-user" class="form-control">
+                            <input type="file" name="image" id="image-user" class="image form-control">
                             @error('image')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+                        <div class="form-group">
+                            <img src="{{ asset('uploads/user_images/default.png') }}" id="image-preview" class="img-circle img-responsive" style="width: 75px">
                         </div>
 
                         <div class="form-group">
@@ -56,6 +59,7 @@
 
                         <div class="form-group">
                             <label>@lang('site.permissions')</label>
+                            @error('permissions')<small class="text-danger">{{ $message }}</small>@enderror
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     @foreach($models as $model)
