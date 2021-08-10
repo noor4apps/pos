@@ -20,7 +20,7 @@
                     <h3 class="box-title">@lang('site.add')</h3>
                 </div><!-- end of box header -->
                 <div class="box-body">
-                    <form action="{{ route('dashboard.users.store') }}" method="post">
+                    <form action="{{ route('dashboard.users.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="f-name">@lang('site.first_name')</label>
@@ -37,6 +37,13 @@
                             <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
                             @error('email')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="image-user">@lang('site.image')</label>
+                            <input type="file" name="image" id="image-user" class="form-control">
+                            @error('image')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+
                         <div class="form-group">
                             <label for="password">@lang('site.password')</label>
                             <input type="password" name="password" id="password" class="form-control">

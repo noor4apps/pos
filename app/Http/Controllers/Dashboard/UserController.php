@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -15,7 +17,7 @@ class UserController extends Controller
         $this->middleware(['permission:create_users'])->only(['create', 'store']);
         $this->middleware(['permission:update_users'])->only(['edit', 'update']);
         $this->middleware(['permission:delete_users'])->only(['destroy']);
-    }
+    }// end of construct
 
     public function index(Request $request)
     {
@@ -46,10 +48,19 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8',
             'permissions' => 'required',
+            'image' => 'nullable|mimes:jpg,jpeg,png,bmp|max:20480',
         ]);
 
-        $data = $request->except(['permissions[]']);
+        $data = $request->except(['permissions[]', 'image']);
         $data['password'] = bcrypt($request->password);
+
+        if($request->image) {
+            $name = $request->image->hashName();
+            Image::make($request->image)->resize('225', null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/users_images/' . $name));
+            $data['image'] = $name;
+        }
 
         $user = User::create($data);
 
@@ -84,9 +95,13 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        if($user->image != 'default.png') {
+            Storage::disk('public_uploads')->delete('/users_images/' . $user->image);
+        } // end of if
+
         $user->delete();
 
         return redirect()->route('dashboard.users.index')->with('success', __('site.deleted_successfully'));
-    }
+    }// end of destroy
 
 }// end of controller

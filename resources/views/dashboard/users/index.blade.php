@@ -41,6 +41,7 @@
                             <th>#</th>
                             <th>@lang('site.first_name')</th>
                             <th>@lang('site.last_name')</th>
+                            <th>@lang('site.image')</th>
                             <th>@lang('site.email')</th>
                             <th>@lang('site.actions')</th>
                         </tr>
@@ -51,6 +52,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->last_name }}</td>
+                                <td><img src="{{ $user->image_path }}" class="img-circle img-responsive" style="width: 75px"></td>
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     @if(auth()->user()->hasPermission('update_users'))

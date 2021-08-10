@@ -23,6 +23,7 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
+        'image',
         'password',
     ];
 
@@ -45,6 +46,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['image_path'];
+
     public function getFirstNameAttribute($value)
     {
         return ucfirst($value);
@@ -54,4 +57,9 @@ class User extends Authenticatable
     {
         return ucfirst($value);
     }// end of get Last name
+
+    public function getImagePathAttribute()
+    {
+        return asset('uploads/users_images/' . $this->image);
+    }// end of get image path
 }
