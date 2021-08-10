@@ -58,7 +58,7 @@ class UserController extends Controller
             $name = $request->image->hashName();
             Image::make($request->image)->resize('225', null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/users_images/' . $name));
+            })->save(public_path('uploads/user_images/' . $name));
             $data['image'] = $name;
         }
 
@@ -96,7 +96,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if($user->image != 'default.png') {
-            Storage::disk('public_uploads')->delete('/users_images/' . $user->image);
+            Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
         } // end of if
 
         $user->delete();
