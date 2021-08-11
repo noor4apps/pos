@@ -9,6 +9,11 @@ return [
     'password-confirm' => 'Password Confirm',
     'change_password' => 'Change Password',
 
+    'login'=>'Login',
+    'sign_in_to_start_your_session'=>'Sign in to start your session',
+    'remember_me'=>'Remember Me',
+    'i_forgot_my_password'=>'I forgot my password',
+
     'confirm_delete' => 'Confirm Delete',
     'yes' => 'Yes',
     'no' => 'No',

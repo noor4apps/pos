@@ -42,7 +42,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(function () {
-            return view('auth.login');
+            return view('auth.dashboard.login');
         });
 
         // if you want to add your own logic aunthenticate a user, you can do right here in this method

@@ -9,6 +9,11 @@ return [
     'password-confirm' => 'تأكيد كلمة المرور',
     'change_password' => 'تغيير كلمة المرور',
 
+    'login'=>'تسجيل الدخول',
+    'sign_in_to_start_your_session'=>'سجل الدخول لبدء الجلسة الخاصة بك',
+    'remember_me'=>'تذكرني',
+    'i_forgot_my_password'=>'لقد نسيت كلمة المرور',
+
     'confirm_delete' => 'تأكيد الحذف',
     'yes' => 'نعم',
     'no' => 'لا',
