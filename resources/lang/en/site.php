@@ -42,4 +42,7 @@ return [
     'email' => 'Email',
     'image' => 'Image',
 
+    'categories' => 'Categories',
+    'name' => 'Name',
+
 ];
