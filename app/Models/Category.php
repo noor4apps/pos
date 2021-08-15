@@ -19,4 +19,9 @@ class Category extends Model
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }// end of asJson
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }// end of products
+
 }// end of category

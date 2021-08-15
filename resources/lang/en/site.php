@@ -48,4 +48,10 @@ return [
     'name->ar' => 'Name in Arabic',
     'name->en' => 'Name  in English',
 
+    'products' => 'Products',
+    'description' => 'Description',
+    'purchase_price' => 'Purchase Price',
+    'sale_price' => 'Sale Price',
+    'stock' => 'Stock',
+
 ];
