@@ -45,4 +45,7 @@ return [
     'categories' => 'Categories',
     'name' => 'Name',
 
+    'name->ar' => 'Name in Arabic',
+    'name->en' => 'Name  in English',
+
 ];

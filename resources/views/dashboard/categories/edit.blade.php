@@ -23,11 +23,13 @@
                     <form action="{{ route('dashboard.categories.update', $category->id) }}" method="post">
                         @csrf
                         @method('put')
-                        <div class="form-group">
-                            <label for="name">@lang('site.name')</label>
-                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $category->name) }}">
-                            @error('name')<small class="text-danger">{{ $message }}</small>@enderror
-                        </div>
+                        @foreach(config('translatable.locales') as $locale)
+                            <div class="form-group">
+                                <label for="name">@lang('site.name->' . $locale)</label>
+                                <input type="text" name="name->{{ $locale }}" id="name" class="form-control" value="{{ old('name.' . $locale, $category->getTranslation('name', $locale)) }}">
+                                @error("name->" . $locale)<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                        @endforeach
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> @lang('site.edit')</button>
                         </div>

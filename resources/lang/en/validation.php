@@ -149,6 +149,8 @@ return [
 
     'attributes' => [
 //        'image'                 => 'Image',
+        'name->ar' => 'Name in Arabic',
+        'name->en' => 'Name  in English',
     ],
 
 ];

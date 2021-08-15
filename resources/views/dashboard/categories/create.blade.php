@@ -15,6 +15,7 @@
 
         <!-- Main content -->
         <section class="content">
+{{--            @include('partials._errors')--}}
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">@lang('site.add')</h3>
@@ -22,11 +23,13 @@
                 <div class="box-body">
                     <form action="{{ route('dashboard.categories.store') }}" method="post">
                         @csrf
-                        <div class="form-group">
-                            <label for="name">@lang('site.name')</label>
-                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-                            @error('name')<small class="text-danger">{{ $message }}</small>@enderror
-                        </div>
+                        @foreach(config('translatable.locales') as $locale)
+                            <div class="form-group">
+                                <label for="name">@lang('site.name->' . $locale)</label>
+                                <input type="text" name="name->{{ $locale }}" id="name" class="form-control" value="{{ old('name.' . $locale) }}">
+                                @error('name->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                        @endforeach
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> @lang('site.save')</button>
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -32,9 +33,12 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:categories'
-        ]);
+        $rules = [];
+        foreach (config('translatable.locales') as $locale) {
+            $rules['name->' . $locale] = 'required|unique:categories';
+        }
+
+        $request->validate($rules);
 
         Category::create($request->all());
 
@@ -48,9 +52,12 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|unique:categories,name,' . $category->id
-        ]);
+        $rules = [];
+        foreach (config('translatable.locales') as $locale) {
+            $rules['name->' . $locale] = 'required|unique:categories,name->'. $locale . ',' . $category->id;
+        }
+
+        $request->validate($rules);
 
         $category->update($request->all());
 
