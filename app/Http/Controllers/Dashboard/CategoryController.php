@@ -21,7 +21,7 @@ class CategoryController extends Controller
     {
         $categories = Category::when($request->search, function ($query) use ($request) {
             return $query->where('name', 'like', '%' . $request->search . '%');
-        })->latest()->paginate(5);
+        })->withCount('products')->latest()->paginate(5);
 
         return view('dashboard.categories.index', compact('categories'));
     }// end of index

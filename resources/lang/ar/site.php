@@ -55,6 +55,9 @@ return [
     'description->en' => 'الوصف باللغة الأنكليزية',
     'purchase_price' => 'سعر الشراء',
     'sale_price' => 'سعر البيع',
+    'profit_percent' => 'نسبة المربح',
+    'products_count' => 'عدد المنتجات',
+    'products_related' => 'المنتجات المرتبطة',
     'stock' => 'المخزن',
 
 ];

@@ -37,12 +37,12 @@
                         @foreach(config('translatable.locales') as $locale)
                             <div class="form-group">
                                 <label for="name">@lang('site.name->' . $locale)</label>
-                                <input type="text" name="name->{{ $locale }}" id="name" class="form-control" value="{{ old('name.' . $locale) }}">
+                                <input type="text" name="name->{{ $locale }}" id="name" class="form-control" value="{{ old('name->' . $locale) }}">
                                 @error('name->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <div class="form-group">
                                 <label for="description">@lang('site.description->' . $locale)</label>
-                                <textarea type="text" name="description->{{ $locale }}" id="description" class="form-control ckeditor">{{ old('description.' . $locale) }}</textarea>
+                                <textarea type="text" name="description->{{ $locale }}" id="description" class="form-control ckeditor">{{ old('description->' . $locale) }}</textarea>
                                 @error('description->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         @endforeach

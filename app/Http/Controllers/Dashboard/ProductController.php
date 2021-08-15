@@ -19,8 +19,15 @@ class ProductController extends Controller
     }// end of construct
 
     public function index(Request $request) {
-        $products = Product::paginate(5);
-        return view('dashboard.products.index', compact('products'));
+        $categories = Category::all();
+
+        $products = Product::when($request->search, function($query) use ($request) {
+            return $query->where('name', 'like', '%' . $request->search . '%');
+        })->when($request->category_id, function ($q) use ($request) {
+            return $q->where('category_id', $request->category_id);
+        })->latest()->paginate(5);
+
+        return view('dashboard.products.index', compact('categories', 'products'));
     } // end of index
 
     public function create() {

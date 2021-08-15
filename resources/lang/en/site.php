@@ -55,6 +55,9 @@ return [
     'description->en' => 'Description in English',
     'purchase_price' => 'Purchase Price',
     'sale_price' => 'Sale Price',
+    'profit_percent' => 'Profit Percent',
+    'products_count' => 'Products Count',
+    'products_related' => 'Products Related',
     'stock' => 'Stock',
 
 ];

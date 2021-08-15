@@ -23,6 +23,14 @@
                                 <input type="text" name="search" class="form-control" value="{{ request()->search }}" placeholder="@lang('site.search')">
                             </div>
                             <div class="col-md-4">
+                                <select name="category_id" class="form-control select2">
+                                    <option value="">---</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : ''}}>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
                                 @if(auth()->user()->hasPermission('create_users'))
                                     <a href="{{ route('dashboard.products.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> @lang('site.add')</a>
@@ -44,6 +52,7 @@
                             <th>@lang('site.image')</th>
                             <th>@lang('site.purchase_price')</th>
                             <th>@lang('site.sale_price')</th>
+                            <th>@lang('site.profit_percent') %</th>
                             <th>@lang('site.stock')</th>
                             <th>@lang('site.actions')</th>
                         </tr>
@@ -54,9 +63,10 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{!! $product->description !!}</td>
-                                <td><img src="{{ $product->image_path }}" class="img-thumbnail img-responsive" style="width: 150px"></td>
+                                <td><img src="{{ $product->image_path }}" class="img-thumbnail img-responsive" style="width: 100px"></td>
                                 <td>{{ $product->purchase_price }}</td>
                                 <td>{{ $product->sale_price }}</td>
+                                <td>{{ $product->profit_percent }} %</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>
                                     @if(auth()->user()->hasPermission('update_users'))
