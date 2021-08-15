@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -28,13 +29,32 @@ class ProductController extends Controller
     } // end of create
 
     public function store(Request $request) {
-        $rules = [];
+        $rules = [
+            'category_id' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,bmp|max:20480',
+            'purchase_price' => 'required',
+            'sale_price' => 'required',
+            'stock' => 'required',
+        ];
         foreach (config('translatable.locales') as $locale) {
-            $rules['name->' . $locale] = 'required|unique:products';
-            $rules['description->' . $locale] = 'required';
+            $rules['name->' . $locale] = 'required|max:50|unique:products';
+            $rules['description->' . $locale] = 'required|max:255';
         }
 
         $request->validate($rules);
+
+        $data = $request->except(['image']);
+        if($request->image) {
+            $name = $request->image->hashName();
+            Image::make($request->image)->resize('400', null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/product_images/' . $name));
+            $data['image'] = $name;
+        }
+
+        Product::create($data);
+
+        return redirect()->route('dashboard.products.index')->with('success', __('site.added_successfully'));
 
     } // end of story
 

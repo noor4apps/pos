@@ -43,12 +43,14 @@ return [
     'image' => 'Image',
 
     'categories' => 'Categories',
+    'category' => 'category',
     'name' => 'Name',
 
     'name->ar' => 'Name in Arabic',
     'name->en' => 'Name in English',
 
     'products' => 'Products',
+    'description' => 'Description',
     'description->ar' => 'Description in Arabic',
     'description->en' => 'Description in English',
     'purchase_price' => 'Purchase Price',

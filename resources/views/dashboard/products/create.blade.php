@@ -22,15 +22,18 @@
                 <div class="box-body">
                     <form action="{{ route('dashboard.products.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+
                         <div class="form-group">
-                            <label for="categories">@lang('site.categories')</label>
-                            <select name="category_id" id="categories" class="form-control">
+                            <label for="category">@lang('site.categories')</label>
+                            <select name="category_id" id="category" class="form-control">
                                 <option value="">---</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            @error('category_id')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
+
                         @foreach(config('translatable.locales') as $locale)
                             <div class="form-group">
                                 <label for="name">@lang('site.name->' . $locale)</label>
@@ -43,30 +46,31 @@
                                 @error('description->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         @endforeach
+
                         <div class="form-group">
                             <label for="image-product">@lang('site.image')</label>
                             <input type="file" name="image" id="image-product" class="image form-control">
                             @error('image')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
                         <div class="form-group">
-                            <img src="{{ asset('uploads/product_images/default.png') }}" id="image-preview" class="img-circle img-responsive" style="width: 75px">
+                            <img src="{{ asset('uploads/product_images/default.png') }}" id="image-preview" class="img-thumbnail img-responsive" style="width: 75px">
                         </div>
 
                         <div class="form-group">
                             <label for="purchase_price">@lang('site.purchase_price')</label>
-                            <input type="text" name="purchase_price" id="purchase_price" class="form-control" value="{{ old('purchase_price') }}">
+                            <input type="number" name="purchase_price" id="purchase_price" class="form-control" value="{{ old('purchase_price') }}">
                             @error('purchase_price')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
 
                         <div class="form-group">
                             <label for="sale_price">@lang('site.sale_price')</label>
-                            <input type="text" name="sale_price" id="sale_price" class="form-control">
+                            <input type="number" name="sale_price" id="sale_price" class="form-control" value="{{ old('sale_price') }}">
                             @error('sale_price')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
 
                         <div class="form-group">
                             <label for="stock">@lang('site.stock')</label>
-                            <input type="text" name="stock" id="stock" class="form-control">
+                            <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock') }}">
                             @error('stock')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
 

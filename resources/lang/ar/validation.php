@@ -135,6 +135,10 @@ return [
         'name->en'              => 'الأسم باللغة الأنكلزية',
         'description->ar'       => 'الوصف باللغة العربية',
         'description->en'       => 'الوصف باللغة الأنكليزية',
+        'purchase_price'        => 'سعر الشراء',
+        'sale_price'            => 'سعر البيع',
+        'stock'                 => 'المخزن',
+        'category_id'           => 'القسم',
 
         'address'               => 'العنوان',
         'age'                   => 'العمر',

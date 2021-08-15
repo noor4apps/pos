@@ -153,6 +153,10 @@ return [
         'name->en' => 'Name  in English',
         'description->ar' => 'Description in Arabic',
         'description->en' => 'Description in English',
+        'purchase_price' => 'Purchase Price',
+        'sale_price' => 'Sale Price',
+        'stock' => 'Stock',
+        'category_id' => 'Category',
     ],
 
 ];

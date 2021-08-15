@@ -53,8 +53,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->description }}</td>
-                                <td><img src="{{ $product->image_path }}" class="img-circle img-responsive" style="width: 75px"></td>
+                                <td>{!! $product->description !!}</td>
+                                <td><img src="{{ $product->image_path }}" class="img-thumbnail img-responsive" style="width: 150px"></td>
                                 <td>{{ $product->purchase_price }}</td>
                                 <td>{{ $product->sale_price }}</td>
                                 <td>{{ $product->stock }}</td>
@@ -77,7 +77,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="5">@lang('site.no_results_found')</td></tr>
+                            <tr><td colspan="7">@lang('site.no_results_found')</td></tr>
                         @endforelse
                         </tbody>
                     </table><!-- end of table -->
