@@ -151,6 +151,8 @@ return [
 //        'image'                 => 'Image',
         'name->ar' => 'Name in Arabic',
         'name->en' => 'Name  in English',
+        'description->ar' => 'Description in Arabic',
+        'description->en' => 'Description in English',
     ],
 
 ];

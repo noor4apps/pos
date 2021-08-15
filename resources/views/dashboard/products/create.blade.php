@@ -23,34 +23,51 @@
                     <form action="{{ route('dashboard.products.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="f-name">@lang('site.first_name')</label>
-                            <input type="text" name="first_name" id="f-name" class="form-control" value="{{ old('first_name') }}">
-                            @error('first_name')<small class="text-danger">{{ $message }}</small>@enderror
+                            <label for="categories">@lang('site.categories')</label>
+                            <select name="category_id" id="categories" class="form-control">
+                                <option value="">---</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        @foreach(config('translatable.locales') as $locale)
+                            <div class="form-group">
+                                <label for="name">@lang('site.name->' . $locale)</label>
+                                <input type="text" name="name->{{ $locale }}" id="name" class="form-control" value="{{ old('name.' . $locale) }}">
+                                @error('name->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">@lang('site.description->' . $locale)</label>
+                                <textarea type="text" name="description->{{ $locale }}" id="description" class="form-control ckeditor">{{ old('description.' . $locale) }}</textarea>
+                                @error('description->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                        @endforeach
                         <div class="form-group">
-                            <label for="l-name">@lang('site.last_name')</label>
-                            <input type="text" name="last_name" id="l-name" class="form-control" value="{{ old('last_name') }}">
-                            @error('last_name')<small class="text-danger">{{ $message }}</small>@enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="email">@lang('site.email')</label>
-                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
-                            @error('email')<small class="text-danger">{{ $message }}</small>@enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="image-user">@lang('site.image')</label>
-                            <input type="file" name="image" id="image-user" class="image form-control">
+                            <label for="image-product">@lang('site.image')</label>
+                            <input type="file" name="image" id="image-product" class="image form-control">
                             @error('image')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
                         <div class="form-group">
-                            <img src="{{ asset('uploads/user_images/default.png') }}" id="image-preview" class="img-circle img-responsive" style="width: 75px">
+                            <img src="{{ asset('uploads/product_images/default.png') }}" id="image-preview" class="img-circle img-responsive" style="width: 75px">
                         </div>
 
                         <div class="form-group">
-                            <label for="password">@lang('site.password')</label>
-                            <input type="password" name="password" id="password" class="form-control">
-                            @error('password')<small class="text-danger">{{ $message }}</small>@enderror
+                            <label for="purchase_price">@lang('site.purchase_price')</label>
+                            <input type="text" name="purchase_price" id="purchase_price" class="form-control" value="{{ old('purchase_price') }}">
+                            @error('purchase_price')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sale_price">@lang('site.sale_price')</label>
+                            <input type="text" name="sale_price" id="sale_price" class="form-control">
+                            @error('sale_price')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stock">@lang('site.stock')</label>
+                            <input type="text" name="stock" id="stock" class="form-control">
+                            @error('stock')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
 
                         <div class="form-group">

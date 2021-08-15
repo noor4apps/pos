@@ -98,6 +98,9 @@
 {{--select2--}}
 <script src="{{ asset('dashboard/plugins/select2/select2.min.js') }}"></script>
 
+{{--ckeditor standard--}}
+<script src="{{ asset('dashboard/plugins/ckeditor/ckeditor.js') }}"></script>
+
 {{--jquery number--}}
 {{--<script src="{{ asset('dashboard/js/jquery.number.min.js') }}"></script>--}}
 
@@ -141,7 +144,9 @@
             n.show();
         });//end of delete
 
-    })
+        CKEDITOR.config.language =  "{{ app()->getLocale() }}"; // ckeditor language
+
+    }); //end of ready document
 </script>
 @stack('scripts')
 </body>

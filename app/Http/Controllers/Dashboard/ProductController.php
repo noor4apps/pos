@@ -28,6 +28,13 @@ class ProductController extends Controller
     } // end of create
 
     public function store(Request $request) {
+        $rules = [];
+        foreach (config('translatable.locales') as $locale) {
+            $rules['name->' . $locale] = 'required|unique:products';
+            $rules['description->' . $locale] = 'required';
+        }
+
+        $request->validate($rules);
 
     } // end of story
 

@@ -46,10 +46,11 @@ return [
     'name' => 'Name',
 
     'name->ar' => 'Name in Arabic',
-    'name->en' => 'Name  in English',
+    'name->en' => 'Name in English',
 
     'products' => 'Products',
-    'description' => 'Description',
+    'description->ar' => 'Description in Arabic',
+    'description->en' => 'Description in English',
     'purchase_price' => 'Purchase Price',
     'sale_price' => 'Sale Price',
     'stock' => 'Stock',
