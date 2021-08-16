@@ -23,21 +23,30 @@
                     <form action="{{ route('dashboard.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
+
                         <div class="form-group">
-                            <label for="f-name">@lang('site.first_name')</label>
-                            <input type="text" name="first_name" id="f-name" class="form-control" value="{{ old('first_name', $product->first_name) }}">
-                            @error('first_name')<small class="text-danger">{{ $message }}</small>@enderror
+                            <label for="category">@lang('site.categories')</label>
+                            <select name="category_id" id="category" class="form-control">
+                                <option value="">---</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
-                        <div class="form-group">
-                            <label for="l-name">@lang('site.last_name')</label>
-                            <input type="text" name="last_name" id="l-name" class="form-control" value="{{ old('last_name', $product->last_name) }}">
-                            @error('last_name')<small class="text-danger">{{ $message }}</small>@enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="email">@lang('site.email')</label>
-                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $product->email) }}">
-                            @error('email')<small class="text-danger">{{ $message }}</small>@enderror
-                        </div>
+
+                        @foreach(config('translatable.locales') as $locale)
+                            <div class="form-group">
+                                <label for="name">@lang('site.name->' . $locale)</label>
+                                <input type="text" name="name->{{ $locale }}" id="name" class="form-control" value="{{ old('name->' . $locale, $product->getTranslation('name', $locale)) }}">
+                                @error('name->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="description">@lang('site.description->' . $locale)</label>
+                                <textarea type="text" name="description->{{ $locale }}" id="description" class="form-control ckeditor">{{ old('description->' . $locale, $product->getTranslation('description', $locale)) }}</textarea>
+                                @error('description->' . $locale)<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                        @endforeach
 
                         <div class="form-group">
                             <label for="image-product">@lang('site.image')</label>
@@ -45,60 +54,25 @@
                             @error('image')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
                         <div class="form-group">
-                            <img src="{{ $product->image_path }}" id="image-preview" class="img-circle img-responsive" style="width: 75px">
+                            <img src="{{ $product->image_path }}" id="image-preview" class="img-thumbnail img-responsive" style="width: 100px">
                         </div>
 
-                        @php
-                            $models = ['categories', 'products', 'clients', 'orders', 'users']
-                        @endphp
+                        <div class="form-group">
+                            <label for="purchase_price">@lang('site.purchase_price')</label>
+                            <input type="number" name="purchase_price" id="purchase_price" class="form-control" value="{{ old('purchase_price', $product->purchase_price) }}">
+                            @error('purchase_price')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
 
                         <div class="form-group">
-                            <label>@lang('site.permissions')</label>
-                            @error('permissions')<small class="text-danger">{{ $message }}</small>@enderror
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
-                                    @foreach($models as $model)
-                                        <li class="{{ $loop->index == 0 ? 'active' : '' }}">
-                                            <a href="#{{ $model }}" data-toggle="tab">@lang('site.' . $model)</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <div class="tab-content">
-                                    @foreach($models as $model)
-                                        <div class="tab-pane {{ $loop->index == 0 ? 'active' : '' }}" id="{{ $model }}">
+                            <label for="sale_price">@lang('site.sale_price')</label>
+                            <input type="number" name="sale_price" id="sale_price" class="form-control" value="{{ old('sale_price', $product->sale_price) }}">
+                            @error('sale_price')<small class="text-danger">{{ $message }}</small>@enderror
+                        </div>
 
-                                            <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]"
-                                                       {{ in_array('read_' . $model, old('permissions', $product->permissions->pluck('name')->toArray())) ? 'checked' : '' }}
-                                                       value="read_{{ $model }}">
-                                                @lang('site.read')
-                                            </label>
-
-                                            <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]"
-                                                       {{ in_array('create_' . $model, old('permissions', $product->permissions->pluck('name')->toArray())) ? 'checked' : '' }}
-                                                       value="create_{{ $model }}">
-                                                @lang('site.create')
-                                            </label>
-
-                                            <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]"
-                                                       {{ in_array('update_' . $model, old('permissions', $product->permissions->pluck('name')->toArray())) ? 'checked' : '' }}
-                                                       value="update_{{ $model }}">
-                                                @lang('site.update')
-                                            </label>
-
-                                            <label style="font-weight: 400; padding: 15px;">
-                                                <input type="checkbox" name="permissions[]"
-                                                       {{ in_array('delete_' . $model, old('permissions', $product->permissions->pluck('name')->toArray())) ? 'checked' : '' }}
-                                                       value="delete_{{ $model }}">
-                                                @lang('site.delete')
-                                            </label>
-
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div><!-- end of tabs permission -->
+                        <div class="form-group">
+                            <label for="stock">@lang('site.stock')</label>
+                            <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', $product->stock) }}">
+                            @error('stock')<small class="text-danger">{{ $message }}</small>@enderror
                         </div>
 
                         <div class="form-group">

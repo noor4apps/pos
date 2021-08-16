@@ -51,7 +51,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->products_count }}</td>
-{{--                                <td><a href="{{ route('dashboard.product.index', ['']) }}" class="btn btn-default"><i class="fa fa-info-circle"></i></a></td>--}}
+                                <td><a href="{{ route('dashboard.products.index', ['category_id' => $category->id]) }}" class="btn btn-default"><i class="fa fa-info-circle"></i></a></td>
                                 <td>
                                     @if(auth()->user()->hasPermission('update_categories'))
                                         <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
