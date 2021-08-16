@@ -60,4 +60,9 @@ return [
     'products_related' => 'المنتجات المرتبطة',
     'stock' => 'المخزن',
 
+    'clients'=>'العملاء',
+    'mobile'=>'الجوال',
+    'phone'=>'الهاتف',
+    'address'=>'العنوان',
+
 ];

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -23,6 +24,9 @@ Route::group([
 
             // product route
             Route::resource('products', ProductController::class)->except(['show']);
+
+            // client route
+            Route::resource('clients', ClientController::class)->except(['show']);
 
         });// end of dashboard routes
 

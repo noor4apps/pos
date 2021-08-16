@@ -157,6 +157,8 @@ return [
         'sale_price' => 'Sale Price',
         'stock' => 'Stock',
         'category_id' => 'Category',
+        'phone.0'                 =>'Mobile',
+        'phone.1'                 =>'Phone',
     ],
 
 ];

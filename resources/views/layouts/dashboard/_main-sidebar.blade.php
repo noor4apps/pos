@@ -23,9 +23,9 @@
                 <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-list"></i><span>@lang('site.products')</span></a></li>
             @endif
 
-{{--            @if (auth()->user()->hasPermission('read_clients'))--}}
-{{--                <li><a href="{{ route('dashboard.clients.index') }}"><i class="fa fa-flag"></i><span>@lang('site.clients')</span></a></li>--}}
-{{--            @endif--}}
+            @if (auth()->user()->hasPermission('read_clients'))
+                <li><a href="{{ route('dashboard.clients.index') }}"><i class="fa fa-flag"></i><span>@lang('site.clients')</span></a></li>
+            @endif
 
 {{--            @if (auth()->user()->hasPermission('read_orders'))--}}
 {{--                <li><a href="{{ route('dashboard.orders.index') }}"><i class="fa fa-bookmark"></i><span>@lang('site.orders')</span></a></li>--}}

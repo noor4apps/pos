@@ -46,7 +46,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['image_path'];
+//    protected $appends = ['image_path'];
 
     public function getFirstNameAttribute($value)
     {

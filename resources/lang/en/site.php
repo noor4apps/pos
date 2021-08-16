@@ -60,4 +60,9 @@ return [
     'products_related' => 'Products Related',
     'stock' => 'Stock',
 
+    'clients'=>'Clients',
+    'mobile'=>'Mobile',
+    'phone'=>'Phone',
+    'address'=>'Address',
+
 ];
