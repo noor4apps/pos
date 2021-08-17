@@ -51,7 +51,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $client->name }}</td>
 {{--                                <td>{{ implode(' - ', array_filter($client->phone)) }}</td> handle in model --}}
-                                <td>{{ $client->NumberOrTwo }}</td>
+                                <td>{{ $client->numberOrTwo }}</td>
                                 <td>{{ $client->address }}</td>
                                 <td>
                                     @if(auth()->user()->hasPermission('update_clients'))

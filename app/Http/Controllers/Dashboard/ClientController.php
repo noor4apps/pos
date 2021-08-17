@@ -18,8 +18,15 @@ class ClientController extends Controller
 
     public function index(Request $request)
     {
-        $clients = Client::paginate(5);
+        $clients = Client::when($request->search, function ($q) use ($request){
+
+            return $q->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('phone', 'like', '%' . $request->search . '%')
+                ->orWhere('address', 'like', '%' . $request->search . '%');
+
+        })->latest()->paginate(5);
         return view('dashboard.clients.index', compact('clients'));
+
     } // end of index
 
     public function create()
@@ -30,13 +37,17 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:clients',
             'phone.0' => 'required|regex:/(09)[0-9]{8}/',
             'phone.1' => 'nullable|regex:/[0-9]{3}[0-9]{7}/',
             'address' => 'required',
         ]);
 
-        Client::create($request->all());
+        $data = $request->all();
+        // clean phone from null if phone.1 is null
+//        $data['phone'] = array_filter($request->phone);
+
+        Client::create($data);
 
         return redirect()->route('dashboard.clients.index')->with('success', __('site.added_successfully'));
 
@@ -49,11 +60,27 @@ class ClientController extends Controller
 
     public function update(Request $request, Client $client)
     {
+        $request->validate([
+            'name' => 'required|unique:clients,name,' . $client->id,
+            'phone.0' => 'required|regex:/(09)[0-9]{8}/',
+            'phone.1' => 'nullable|regex:/[0-9]{3}[0-9]{7}/',
+            'address' => 'required',
+        ]);
+
+        $data = $request->all();
+        // clean phone from null if phone.1 is null
+//        $data['phone'] = array_filter($request->phone);
+
+        $client->update($data);
+
+        return redirect()->route('dashboard.clients.index')->with('success', __('site.updated_successfully'));
 
     } // end of update
 
     public function destroy(Client $client)
     {
+        $client->delete();
+        return redirect()->route('dashboard.clients.index')->with('success', __('site.deleted_successfully'));
 
     } // end of destroy
 
