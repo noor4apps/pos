@@ -42,6 +42,7 @@
                             <th>@lang('site.name')</th>
                             <th>@lang('site.mobile')</th>
                             <th>@lang('site.address')</th>
+                            <th>@lang('site.add_order')</th>
                             <th>@lang('site.actions')</th>
                         </tr>
                         </thead>
@@ -53,6 +54,13 @@
 {{--                                <td>{{ implode(' - ', array_filter($client->phone)) }}</td> handle in model --}}
                                 <td>{{ $client->numberOrTwo }}</td>
                                 <td>{{ $client->address }}</td>
+                                <td>
+                                    @if(auth()->user()->hasPermission('create_orders'))
+                                        <a href="{{ route('dashboard.clients.orders.create', $client->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-shopping-bag"></i> @lang('site.add_order')</a>
+                                    @else
+                                        <button class="btn btn-warning btn-sm disabled"><i class="fa fa-shopping-bag"></i> @lang('site.add_order')</button>
+                                    @endif
+                                </td>
                                 <td>
                                     @if(auth()->user()->hasPermission('update_clients'))
                                         <a href="{{ route('dashboard.clients.edit', $client->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>

@@ -65,4 +65,7 @@ return [
     'phone'=>'Phone',
     'address'=>'Address',
 
+    'orders'=>'Orders',
+    'add_order'=>'Add Order',
+
 ];
