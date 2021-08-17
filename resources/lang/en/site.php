@@ -67,5 +67,11 @@ return [
 
     'orders'=>'Orders',
     'add_order'=>'Add Order',
+    'client'=>'Client',
+    'previous_orders'=>'Previous Orders',
+    'product'=>'Product',
+    'quantity'=>'Quantity',
+    'price'=>'Price',
+    'total'=>'Total',
 
 ];

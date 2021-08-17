@@ -107,6 +107,7 @@
 {{-- custom --}}
 <script src="{{ asset('dashboard/js/custom/image_preview.js') }}"></script>
 {{--<script src="{{ asset('dashboard/js/custom/order.js') }}"></script>--}}
+<script src="{{ asset('dashboard/js/custom/client_order.js') }}"></script>
 {{--<script src="{{ asset('dashboard/js/printThis.js') }}"></script>--}}
 
 <script>

@@ -48,8 +48,8 @@
                         <tr>
                             <th>#</th>
                             <th>@lang('site.name')</th>
-                            <th>@lang('site.description')</th>
                             <th>@lang('site.category')</th>
+                            <th>@lang('site.description')</th>
                             <th>@lang('site.image')</th>
                             <th>@lang('site.purchase_price')</th>
                             <th>@lang('site.sale_price')</th>

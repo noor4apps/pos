@@ -67,5 +67,11 @@ return [
 
     'orders'=>'الطلبات',
     'add_order'=>'إضافة طلب',
+    'client'=>'العميل',
+    'previous_orders'=>'الطلبات السابقة',
+    'product'=>'المنتج',
+    'quantity'=>'الكمية',
+    'price'=>'السعر',
+    'total'=>'المجموع',
 
 ];
