@@ -12,14 +12,16 @@ $(document).ready(function () {
         var html = `
             <tr>
                 <td>${name}</td>
-                <td><input type="number" name="quantity[]" class="form-control input-sm" min="1" value="1"></td>
-                <td>${price}</td>
+                <td><input type="number" name="quantity[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <td class="product-price" data-priceInc="${price}">${price}</td>
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><i class="fa fa-trash "></i></button></td>
             </tr>
         `;
 
         $('.order-list').append(html);
 
+        // to Calculate total price
+        calculateTotal();
     });
 
     //disabled btn
@@ -38,9 +40,50 @@ $(document).ready(function () {
         $(this).closest('tr').remove();
         $('#product-' + id).removeClass('btn-default disabled').addClass('btn-success');
 
+        // to Calculate total price
+        calculateTotal();
+
     });//end of remove product btn
 
+    $('body').on('keyup change', '.product-quantity', function () {
+
+        var unitPrice = $(this).data('price');
+        var quantity = parseInt($(this).val());
+        $(this).closest('tr').find('.product-price').html(unitPrice * quantity)
+
+        calculateTotal();
+    })
+
 }); // end of document ready
+
+//calculate the total
+function calculateTotal() {
+
+    var price = 0;
+
+    $('.order-list .product-price').each(function(index) {
+
+        // price += parseFloat($(this).html().replace(/,/g, ''));
+        price += parseFloat($(this).html());
+        // price += $(this).data('priceInc');
+
+    });//end of each product price
+
+    // $('.total-price').html($.number(price, 2));
+    $('.total-price').html(price);
+
+    // //check if price > 0
+    // if (price > 0) {
+    //
+    //     $('#add-order-form-btn').removeClass('disabled')
+    //
+    // } else {
+    //
+    //     $('#add-order-form-btn').addClass('disabled')
+    //
+    // }//end of else
+
+}//end of calculate total
 
 // accounting.formatMoney(4999.99, "€", 2, ".", ","); // €4.999,99
 // console.log(typeof (price), price);
