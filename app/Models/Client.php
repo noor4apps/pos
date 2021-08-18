@@ -25,4 +25,9 @@ class Client extends Model
         return implode(' - ', array_filter($this->phone));
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 } // end of model

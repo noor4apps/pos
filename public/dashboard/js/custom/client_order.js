@@ -71,16 +71,16 @@ function calculateTotal() {
     $('.total-price').html(price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
 
-    // //check if price > 0
-    // if (price > 0) {
-    //
-    //     $('#add-order-form-btn').removeClass('disabled')
-    //
-    // } else {
-    //
-    //     $('#add-order-form-btn').addClass('disabled')
-    //
-    // }//end of else
+    //check if price > 0
+    if (price > 0) {
+
+        $('#add-order-form-btn').removeClass('disabled')
+
+    } else {
+
+        $('#add-order-form-btn').addClass('disabled')
+
+    }//end of else
 
 }//end of calculate total
 
