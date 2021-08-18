@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -24,7 +25,31 @@ class OrderController extends Controller
 
     public function store(Request $request, Client $client)
     {
-        dd($request->all(), $client->id);
+//        dd($request->all(), $client->id);
+
+        $request->validate([
+            'product_ids' => 'required',
+            'quantities' => 'required',
+        ]);
+
+        $order = $client->orders()->create(['total_price' => 0]);
+
+        $total_price = 0;
+
+        foreach ($request->product_ids as $index => $product_id) {
+
+            $product = Product::FindOrFail($product_id);
+            $total_price += $product->sale_price * $request->quantities[$index];
+
+            $order->products()->attach($product_id, ['quantity' => $request->quantities[$index]]);
+
+            $product->update([
+                'stock' => $product->stock - $request->quantities[$index]
+            ]);
+        }
+
+        $order->update(['total_price' => $total_price]);
+
     } // end of store
 
     public function edit(Client $client, Order $order)

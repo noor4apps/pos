@@ -12,7 +12,8 @@ $(document).ready(function () {
         var html = `
             <tr>
                 <td>${name}</td>
-                <td><input type="number" name="quantity[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <input type="hidden" name="product_ids[]" value="${id}">
+                <td><input type="number" name="quantities[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
                 <td class="product-price"">${price}</td>
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><i class="fa fa-trash"></i></button></td>
             </tr>
