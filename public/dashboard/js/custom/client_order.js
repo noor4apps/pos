@@ -49,7 +49,7 @@ $(document).ready(function () {
 
         var unitPrice = $(this).data('price');
         var quantity = parseInt($(this).val());
-        $(this).closest('tr').find('.product-price').html(unitPrice * quantity)
+        $(this).closest('tr').find('.product-price').html((unitPrice * quantity).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'))
 
         calculateTotal();
     })
@@ -63,14 +63,13 @@ function calculateTotal() {
 
     $('.order-list .product-price').each(function(index) {
 
-        // price += parseFloat($(this).html().replace(/,/g, ''));
-        price += parseFloat($(this).html());
-        // price += $(this).data('priceInc');
+        price += parseFloat($(this).html().replace(/,/g, ''));
 
     });//end of each product price
 
     // $('.total-price').html($.number(price, 2));
-    $('.total-price').html(price);
+    $('.total-price').html(price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+
 
     // //check if price > 0
     // if (price > 0) {
