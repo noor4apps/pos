@@ -86,8 +86,8 @@
 
                                                 @if (auth()->user()->hasPermission('delete_orders'))
                                                     <form action="{{ route('dashboard.orders.destroy', $order->id) }}" method="post" style="display: inline-block;">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('delete') }}
+                                                        @csrf
+                                                        @method('delete')
                                                         <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> @lang('site.delete')</button>
                                                     </form>
 

@@ -33,4 +33,18 @@ class OrderController extends Controller
 
     } //end of products
 
+    public function destroy(Order $order)
+    {
+        foreach ($order->products as $product) {
+            $product->update([
+                'stock' => $product->stock + $product->pivot->quantity
+            ]);
+        }
+
+        $order->delete();
+
+        return redirect()->route('dashboard.orders.index')->with('success', __('site.deleted_successfully'));
+
+    } // end of destroy
+
 } // end of controller
