@@ -74,9 +74,7 @@
                                             </td>
                                             <td>{{ $order->created_at->toFormattedDateString() }}</td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm order-products"
-{{--                                                        data-url="{{ route('dashboard.orders.products', $order->id) }}"--}}
-                                                >
+                                                <button class="btn btn-primary btn-sm order-products" data-url="{{ route('dashboard.orders.products', $order->id) }}">
                                                     <i class="fa fa-list"></i>
                                                     @lang('site.show')
                                                 </button>
@@ -112,7 +110,7 @@
                         @else
 
                             <div class="box-body">
-                                <h3>@lang('site.no_records')</h3>
+                                <h3>@lang('site.no_results_found')</h3>
                             </div>
 
                         @endif

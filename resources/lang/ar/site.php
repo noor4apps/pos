@@ -30,12 +30,20 @@ return [
     'delete' => 'حذف',
     'search' => 'بحث',
     'save' => 'حفظ',
+    'print' => 'طباعة',
 
     'no_results_found' => 'لم يتم العثور على نتائج.',
+    'loading' => 'جاري التحميل...',
 
     'added_successfully' => 'تم الإضافة بنجاح.',
     'updated_successfully' => 'تم التحديث بنجاح.',
     'deleted_successfully' => 'تم الحذف بنجاح.',
+
+    'status'=>'الحالة',
+    'processing'=>'جاري التحضير',
+    'finished'=>'تم التحضير',
+
+    'created_at'=>'تم الإضافة',
 
     'users' => 'المشرفين',
     'first_name' => 'الأسم الاول',
@@ -75,7 +83,5 @@ return [
     'quantity'=>'الكمية',
     'price'=>'السعر',
     'total'=>'المجموع',
-    'status'=>'الحالة',
-    'created_at'=>'تم الإضافة',
 
 ];

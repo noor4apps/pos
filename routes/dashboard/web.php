@@ -33,6 +33,7 @@ Route::group([
 
             // order route
             Route::resource('orders', OrderController::class)->except(['show']);
+            Route::get('/orders/{order}/products', [OrderController::class, 'products'])->name('orders.products');
 
         });// end of dashboard routes
 

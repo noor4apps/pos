@@ -60,7 +60,7 @@ $(document).ready(function () {
         $('.total-price').html($.number(calculateSum(), 2));
 
     });
-    
+
     //print
     $(document).on('click', '.print-btn', function() {
 

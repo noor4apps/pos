@@ -56,6 +56,7 @@
             margin-right: 2px;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('dashboard/css/loader/loader.css') }}">
     @yield('styles')
 </head>
 
@@ -102,12 +103,12 @@
 <script src="{{ asset('dashboard/plugins/ckeditor/ckeditor.js') }}"></script>
 
 {{--jquery number--}}
-{{--<script src="{{ asset('dashboard/js/jquery.number.min.js') }}"></script>--}}
+<script src="{{ asset('dashboard/js/jquery.number.min.js') }}"></script>
 
 {{-- custom --}}
 <script src="{{ asset('dashboard/js/custom/image_preview.js') }}"></script>
-{{--<script src="{{ asset('dashboard/js/custom/order.js') }}"></script>--}}
-<script src="{{ asset('dashboard/js/custom/client_order.js') }}"></script>
+<script src="{{ asset('dashboard/js/custom/order.js') }}"></script>
+{{--<script src="{{ asset('dashboard/js/custom/client_order.js') }}"></script>--}}
 {{--<script src="{{ asset('dashboard/js/printThis.js') }}"></script>--}}
 
 <script>

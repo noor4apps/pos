@@ -30,12 +30,20 @@ return [
     'delete' => 'Delete',
     'search' => 'Search',
     'save' => 'Save',
+    'print' => 'Print',
 
     'no_results_found' => 'No Results Found.',
+    'loading' => 'loading...',
 
     'added_successfully' => 'Added Successfully.',
     'updated_successfully' => 'Updated Successfully.',
     'deleted_successfully' => 'Deleted Successfully.',
+
+    'status'=>'Status',
+    'processing'=>'Processing',
+    'finished'=>'Finished',
+
+    'created_at'=>'Created at',
 
     'users' => 'Users',
     'first_name' => 'First Name',
@@ -75,7 +83,5 @@ return [
     'quantity'=>'Quantity',
     'price'=>'Price',
     'total'=>'Total',
-    'status'=>'Status',
-    'created_at'=>'Created at',
 
 ];

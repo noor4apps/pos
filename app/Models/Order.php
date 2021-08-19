@@ -18,12 +18,7 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_order');
-    }
-
-    public function status()
-    {
-        return $this->status == 1 ? 'processing' : 'finished';
+        return $this->belongsToMany(Product::class, 'product_order')->withPivot('quantity');
     }
 
 } // end of model
