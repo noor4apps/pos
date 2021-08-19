@@ -22,6 +22,7 @@ return [
     'read' => 'Read',
     'create' => 'Create',
     'update' => 'Update',
+    'show' => 'Show',
 
     'actions' => 'Actions',
     'add' => 'Add',
@@ -59,6 +60,7 @@ return [
     'products_count' => 'Products Count',
     'products_related' => 'Products Related',
     'stock' => 'Stock',
+    'show_products' => 'Show Products',
 
     'clients'=>'Clients',
     'mobile'=>'Mobile',
@@ -73,5 +75,7 @@ return [
     'quantity'=>'Quantity',
     'price'=>'Price',
     'total'=>'Total',
+    'status'=>'Status',
+    'created_at'=>'Created at',
 
 ];

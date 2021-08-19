@@ -28,27 +28,29 @@ class OrderController extends Controller
 //        dd($request->all(), $client->id);
 
         $request->validate([
-            'product_ids' => 'required',
-            'quantities' => 'required',
+            'products' => 'required',
         ]);
 
         $order = $client->orders()->create(['total_price' => 0]);
 
+        $order->products()->attach($request->products);
+
         $total_price = 0;
 
-        foreach ($request->product_ids as $index => $product_id) {
+        foreach ($request->products as $id => $quantity) {
 
-            $product = Product::FindOrFail($product_id);
-            $total_price += $product->sale_price * $request->quantities[$index];
+            $product = Product::FindOrFail($id);
 
-            $order->products()->attach($product_id, ['quantity' => $request->quantities[$index]]);
+            $total_price += $product->sale_price * $quantity['quantity'];
 
             $product->update([
-                'stock' => $product->stock - $request->quantities[$index]
+                'stock' => $product->stock - $quantity['quantity']
             ]);
         }
 
         $order->update(['total_price' => $total_price]);
+
+        return redirect()->route('dashboard.orders.index')->with('success', __('site.added_successfully'));
 
     } // end of store
 

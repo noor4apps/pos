@@ -21,4 +21,9 @@ class Order extends Model
         return $this->belongsToMany(Product::class, 'product_order');
     }
 
+    public function status()
+    {
+        return $this->status == 1 ? 'processing' : 'finished';
+    }
+
 } // end of model

@@ -22,6 +22,7 @@ return [
     'read' => 'عرض',
     'create' => 'إضافة',
     'update' => 'تعديل',
+    'show' => 'عرض',
 
     'actions' => 'الإجراءات',
     'add' => 'أضف',
@@ -59,6 +60,7 @@ return [
     'products_count' => 'عدد المنتجات',
     'products_related' => 'المنتجات المرتبطة',
     'stock' => 'المخزن',
+    'show_products' => 'عرض المنتجات',
 
     'clients'=>'العملاء',
     'mobile'=>'الجوال',
@@ -73,5 +75,7 @@ return [
     'quantity'=>'الكمية',
     'price'=>'السعر',
     'total'=>'المجموع',
+    'status'=>'الحالة',
+    'created_at'=>'تم الإضافة',
 
 ];
