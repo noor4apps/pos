@@ -119,15 +119,53 @@
                     </div>
                     <!-- end of orders -->
 
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">@lang('site.previous_orders')</h3>
-                        </div><!-- end of box header -->
-                        <div class="box-body">
-                            <h3>body</h3>
-                        </div><!-- end of box body -->
-                    </div>
-                    <!-- end of previous_orders -->
+                    @if ($client->orders->count() > 0)
+                        <div class="box box-primary">
+
+                            <div class="box-header">
+                                <h3 class="box-title" style="margin-bottom: 10px">@lang('site.previous_orders')
+                                    <small>{{ $orders->total() }}</small>
+                                </h3>
+                            </div><!-- end of box header -->
+
+                            <div class="box-body">
+                                @foreach ($orders as $order)
+                                    <div class="panel-group">
+                                        <div class="panel panel-success">
+
+                                            <a data-toggle="collapse" href="#date-{{ $order->created_at->format('d-m-Y-s') }}">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        @lang('site.created_at') {{ $order->created_at->format('d / m / Y') }} -
+                                                        @lang('site.price') {{ $order->total_price }}
+                                                    </h4>
+                                                </div>
+                                            </a>
+
+                                            <div id="date-{{ $order->created_at->format('d-m-Y-s') }}" class="panel-collapse collapse">
+
+                                                <div class="panel-body">
+                                                    <ul class="list-group">
+                                                        @foreach ($order->products as $product)
+                                                            <li class="list-group-item">{{ $product->name }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div><!-- end of panel body -->
+
+                                            </div><!-- end of panel collapse -->
+
+                                        </div><!-- end of panel primary -->
+
+                                    </div><!-- end of panel group -->
+                                @endforeach
+
+                                {{ $orders->links() }}
+
+                            </div><!-- end of box body -->
+
+                        </div><!-- end of box -->
+
+                    @endif
 
                 </div> <!-- end of col: orders & previous_orders -->
 
