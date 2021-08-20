@@ -20,66 +20,65 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+                {{-- categories--}}
                 <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>{{ $categories_count }}</h3>
 
-                            <p>New Orders</p>
+                            <p>@lang('site.categories')</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bookmark"></i>
+                        </div>
+                        <a href="{{ route('dashboard.categories.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                {{--products--}}
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ $products_count }}</h3>
+
+                            <p>@lang('site.products')</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('dashboard.products.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                            <p>Bounce Rate</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
+                {{--clients--}}
                 <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <h3>44</h3>
-
-                            <p>User Registrations</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3>65</h3>
+                            <h3>{{ $clients_count }}</h3>
 
-                            <p>Unique Visitors</p>
+                            <p>@lang('site.clients')</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="fa fa-users"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('dashboard.clients.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <!-- ./col -->
+
+                {{--users--}}
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{ $users_count }}</h3>
+
+                            <p>@lang('site.users')</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-user-secret"></i>
+                        </div>
+                        <a href="{{ route('dashboard.users.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
             <!-- Main row -->
