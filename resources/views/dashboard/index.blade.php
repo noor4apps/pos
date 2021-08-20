@@ -1,9 +1,9 @@
 @extends('layouts.dashboard.app')
 
-@section('styles')
+@push('styles')
     {{--morris--}}
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/morris/morris.css') }}">
-@endsection
+@endpush
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -106,8 +106,32 @@
     <!-- /.content-wrapper -->
 @endsection
 
-@section('scripts')
+@push('scripts')
     {{--morris js--}}
     <script src="{{ asset('dashboard/plugins/morris/raphael.min.js') }}"></script>
     <script src="{{ asset('dashboard/plugins/morris/morris.min.js') }}"></script>
-@endsection
+
+    <script>
+        //line chart
+        var line = new Morris.Line({
+            element: 'line-chart',
+            resize: true,
+            data: [
+                    @foreach ($sales_data as $data)
+                {
+                    ym: "{{ $data->year }}-{{ $data->month }}", sum: "{{ $data->sum }}"
+                },
+                @endforeach
+            ],
+            xkey: 'ym',
+            ykeys: ['sum'],
+            labels: ['@lang('site.total')'],
+            lineWidth: 2,
+            hideHover: 'auto',
+            gridStrokeWidth: 0.4,
+            pointSize: 4,
+            gridTextFamily: 'Open Sans',
+            gridTextSize: 10
+        });
+    </script>
+@endpush

@@ -57,7 +57,7 @@
         }
     </style>
     <link rel="stylesheet" href="{{ asset('dashboard/css/loader/loader.css') }}">
-    @yield('styles')
+    @stack('styles')
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
