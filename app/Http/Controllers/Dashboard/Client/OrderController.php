@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-
-    } // end of index
+        $this->middleware(['permission:create_orders'])->only(['create', 'store']);
+        $this->middleware(['permission:update_orders'])->only(['edit', 'update']);
+    }// end of construct
 
     public function create(Client $client)
     {
@@ -31,6 +32,35 @@ class OrderController extends Controller
             'products' => 'required',
         ]);
 
+        $this->attach_order($request, $client);
+
+        return redirect()->route('dashboard.orders.index')->with('success', __('site.added_successfully'));
+
+    } // end of store
+
+    public function edit(Client $client, Order $order)
+    {
+        $categories = Category::with('products')->get();
+        return view('dashboard.clients.orders.edit', compact('client', 'order', 'categories'));
+
+    } // end of store
+
+    public function update(Request $request, Client $client, Order $order)
+    {
+        $request->validate([
+            'products' => 'required',
+        ]);
+
+        $this->detach_order($order);
+
+        $this->attach_order($request, $client);
+
+        return redirect()->route('dashboard.orders.index')->with('success', __('site.updated_successfully'));
+
+    } // end of update
+
+    private function attach_order($request, $client)
+    {
         $order = $client->orders()->create(['total_price' => 0]);
 
         $order->products()->attach($request->products);
@@ -40,7 +70,6 @@ class OrderController extends Controller
         foreach ($request->products as $id => $quantity) {
 
             $product = Product::FindOrFail($id);
-
             $total_price += $product->sale_price * $quantity['quantity'];
 
             $product->update([
@@ -50,23 +79,18 @@ class OrderController extends Controller
 
         $order->update(['total_price' => $total_price]);
 
-        return redirect()->route('dashboard.orders.index')->with('success', __('site.added_successfully'));
+    }//end of attach order
 
-    } // end of store
-
-    public function edit(Client $client, Order $order)
+    private function detach_order($order)
     {
+        foreach ($order->products as $product) {
+            $product->update([
+                'stock' => $product->stock + $product->pivot->quantity
+            ]);
+        }
 
-    } // end of store
+        $order->delete();
 
-    public function update(Request $request, Client $client, Order $order)
-    {
-
-    } // end of update
-
-    public function destroy(Client $client, Order $order)
-    {
-
-    } // end of destroy
+    }//end of detach order
 
 } // end of controller

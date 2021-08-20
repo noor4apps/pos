@@ -77,6 +77,7 @@ return [
 
     'orders'=>'الطلبات',
     'add_order'=>'إضافة طلب',
+    'edit_order'=>'تعديل طلب',
     'client'=>'العميل',
     'previous_orders'=>'الطلبات السابقة',
     'product'=>'المنتج',

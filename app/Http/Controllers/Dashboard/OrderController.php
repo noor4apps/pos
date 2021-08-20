@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read_orders'])->only(['index']);
+//        $this->middleware(['permission:update_orders'])->only(['products']);
+        $this->middleware(['permission:delete_orders'])->only(['destroy']);
+    }// end of construct
+
     public function index(Request $request)
     {
         $orders = Order::whereHas('client', function ($query) use ($request) {

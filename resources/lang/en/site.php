@@ -77,6 +77,7 @@ return [
 
     'orders'=>'Orders',
     'add_order'=>'Add Order',
+    'edit_order'=>'Edit Order',
     'client'=>'Client',
     'previous_orders'=>'Previous Orders',
     'product'=>'Product',
