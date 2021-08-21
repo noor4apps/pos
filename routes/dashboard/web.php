@@ -34,6 +34,7 @@ Route::group([
             // order route
             Route::resource('orders', OrderController::class)->except(['show']);
             Route::get('/orders/{order}/products', [OrderController::class, 'products'])->name('orders.products');
+            Route::put('/orders/{order}/update_status', [OrderController::class, 'update_status'])->name('orders.update_status');
 
         });// end of dashboard routes
 

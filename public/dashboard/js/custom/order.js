@@ -79,6 +79,46 @@ $(document).ready(function () {
 
     });//end of order products click
 
+    $('.order-status-btn').on('click', function () {
+
+        let status = $(this).data('status');
+        let availableStatus = $(this).data('available-status');
+        let that = $(this);
+
+        //processing, finished
+        if (status == availableStatus[0]) {
+
+            that.text(availableStatus[1])
+            that.removeClass('btn-warning').addClass('btn-success disabled');
+
+            let url = $(this).data('url');
+            let method = $(this).data('method');
+            let csrf = $('meta[name="csrf-token"]').attr('content');
+
+            let data = {
+                '_token': csrf,
+                'status': 'finished'
+            }
+
+            $.ajax({
+                url: url,
+                method: method,
+                data: data,
+                success: function (data) {
+                    // new Noty({
+                    //     type: 'success',
+                    //     layout: 'topCenter',
+                    //     text: `OK`,
+                    //     timeout: 2000,
+                    //     killer: true
+                    // }).show();
+                }
+            })
+
+        }//end of if
+
+    });
+
     //print order
     $(document).on('click', '.print-btn', function() {
 

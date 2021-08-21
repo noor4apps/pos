@@ -64,7 +64,7 @@
                                             <td>
                                                 <button
                                                     data-status="@lang('site.' . $order->status)"
-{{--                                                    data-url="{{ route('dashboard.orders.update_status', $order->id) }}"--}}
+                                                    data-url="{{ route('dashboard.orders.update_status', $order->id) }}"
                                                     data-method="put"
                                                     data-available-status='["@lang('site.processing')", "@lang('site.finished') "]'
                                                     class="order-status-btn btn {{ $order->status == 'processing' ? 'btn-warning' : 'btn-success disabled' }} btn-sm"

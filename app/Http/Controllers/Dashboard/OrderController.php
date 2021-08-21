@@ -40,6 +40,12 @@ class OrderController extends Controller
 
     } //end of products
 
+    public function update_status(Request $request, Order $order)
+    {
+        $order->update($request->all());
+
+    }//end of update status
+
     public function destroy(Order $order)
     {
         foreach ($order->products as $product) {
